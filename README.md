@@ -6,7 +6,7 @@ For this task we ask you to write an API server that will connect with a simplif
 
 Our implementation allows for pagination as specified in the specification. Where we differ is the actual URL to get the transactions.
 
-We have begun the API server with a skeleton server and swagger document (that can be accessed from the running server on the `/doc` endpoint.)
+We have begun the API server with a skeleton server and swagger document (that can be accessed from the running server on the `/docs` endpoint.)
 
 ## Banking Institution Server
 
@@ -25,7 +25,7 @@ The token end point will accept a request that follows an OAuth2/OpenID Connecti
 
 ```bash
 curl --request POST \
-  --url 'http://obmockaspsp.dev.127.0.0.1.nip.io/api/token?=' \
+  --url 'https://obmockaspsp.moneyhub.co.uk/api/token?=' \
   --header 'Authorization: Basic YmExYmRjYzAtNjBmNS00OTM5LWFmYzQtMWIxM2E5OGRjNDkwOjZmMWFmZmY4LWViODEtNDk0NS04YjkxLWEwNWUzZDA5NWNlMw==' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
   --data scope=transactions \
@@ -42,10 +42,55 @@ The transactions end point allows for pagination, information for which is found
 
 ## API Server
 
-This is what you will need to write code for. It'll need just one end point to be implemented, this end point is `GET /users/{userId}/transactions` where you will need to:
+This repo represents the API server where you will be writing your code.
+
+### `/docs`
+
+Route containing swagger docs
+### `GET /users/{userId}/transactions`
+
+This endpoint will return the transactions retrieved from the bank and formatted according to the
+swagger docs. (To be implemented)
+
+## Requirements
+
+You will need to implement the `GET /users/{userId}/transactions` endpoint in the api server, where you will need to:
 
 - get an access token from the bank
 - retrieve the transactions from the bank
 - format the transactions according to the schema laid out in the swagger documentation
 
-We strongly recommend writing tests in whatever framework you're comfortable with.
+We prefer:
+- Functional code
+- Ramda.js (this is not a requirement but feel free to investigate)
+- Unit testing
+
+### Notes
+All of your work should take place inside the `src` folder as this service represents the API server
+
+You are free to use any packages that would help with this task
+
+We're interested in how you break down the work and build your solution in a clean, reusable and testable manner rather than seeing a perfect example, try to only spend around *1-2 hours* working on it
+
+
+## Getting Started
+
+Please clone this service and push it to your own github (or other) public repository
+
+On completion email a link to your repository to your contact at Moneyhub and ensure it is publicly accessible.
+
+To develop against the api-server you will need to run the following:
+
+```bash
+npm start
+or
+npm run develop
+```
+
+The develop command will run nodemon allowing you to make changes without restarting
+
+The services will try to use ports 3001
+
+Use Postman or any API tool of your choice to trigger your endpoint (this is how we will test your new route).
+
+You should be able to test it at `GET http://localhost:3001/users/{userId}/transactions`
