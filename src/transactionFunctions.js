@@ -22,4 +22,18 @@ module.exports = {
       throw new Error("Incorrect Credentials");
     }
   },
+  async retrieveTransactions(userId, accessToken){
+    try{
+      const response = await got(`https://obmockaspsp.moneyhub.co.uk/api/users/${userId}/transactions`, {
+        headers:{
+          Authorization: `Bearer ${accessToken}`
+        },
+        params:{
+          scope: "transactions",
+        }
+      });
+    }catch(e){
+      throw new Error("Incorrect UserId");
+    }
+  }
 }
