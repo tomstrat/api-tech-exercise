@@ -18,7 +18,7 @@ module.exports = {
       const accessToken = JSON.parse(response.body).access_token;
 
       return accessToken;
-      
+
     } catch(e){
       throw new Error("Incorrect Credentials");
     }
