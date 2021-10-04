@@ -32,6 +32,7 @@ module.exports = {
           scope: "transactions",
         }
       });
+      return response.body;
     }catch(e){
       throw new Error("Incorrect UserId");
     }

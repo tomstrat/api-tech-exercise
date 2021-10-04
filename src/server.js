@@ -1,5 +1,5 @@
 const express = require('express');
-const {getAccessToken} = require("./transactionFunctions");
+const {getAccessToken, retrieveTransactions} = require("./transactionFunctions");
 
 const app = express();
 
@@ -10,7 +10,9 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/users/:userId/transactions', async (req, res) => {
   const accessToken = await getAccessToken(req.query.clientId, req.query.clientSecret);
-  res.send(`Access Token is ${accessToken}`);
+  const transactions = await retrieveTransactions(req.params.userId, accessToken);
+
+  res.send(`transactions are ${transactions}`);
 });
 
 module.exports = app;
