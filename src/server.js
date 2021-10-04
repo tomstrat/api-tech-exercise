@@ -1,5 +1,5 @@
 const express = require('express');
-const {getAccessToken, retrieveTransactions} = require("./transactionFunctions");
+const {getAccessToken, retrieveTransactions, formatTransactions} = require("./transactionFunctions");
 
 const app = express();
 

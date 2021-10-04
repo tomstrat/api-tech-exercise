@@ -36,5 +36,9 @@ module.exports = {
     }catch(e){
       throw new Error("Incorrect UserId");
     }
+  },
+  formatTransactions(transactions){
+    const transactionObject = JSON.parse(transactions);
+    return transactionObject.transactions;
   }
 }
