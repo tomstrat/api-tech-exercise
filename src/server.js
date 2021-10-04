@@ -11,8 +11,9 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.get('/users/:userId/transactions', async (req, res) => {
   const accessToken = await getAccessToken(req.query.clientId, req.query.clientSecret);
   const transactions = await retrieveTransactions(req.params.userId, accessToken);
+  const formattedTransactions = formatTransactions(transactions);
 
-  res.send(`transactions are ${transactions}`);
+  res.send(`<table>${formattedTransactions}</table>`);
 });
 
 module.exports = app;
