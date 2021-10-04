@@ -17,7 +17,6 @@ app.get('/users/:userId/transactions', async (req, res) => {
   } catch(e){
     res.status(401).send("Unsuccesful Response - Not authorised - Missing authorization header - Invalid access Token")
   }
-
 });
 
 module.exports = app;

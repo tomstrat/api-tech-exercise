@@ -1,0 +1,47 @@
+**Questions**
+How would you implement pagination of transactions in the new route?
+
+Havent done pagination myself, but my understanding would be that a page number parameter would be passed
+into the request, that then allows me to request a set amount of transactions and use the
+page number parameter to change the offset of the transactions im receiving, thus sending
+different data. 
+
+
+What else would you have liked to improve given more time?
+
+Would have liked to segregate the code into its own route folder, for structure.
+Would have implemented perhaps Jest for testing and creating more than just sudocode tests
+Looked more into using a package like Ramda.js
+
+
+**Comments**
+I did intend to branch and remerge when i started, but i unfortunatly forgot.
+I did spend the first half of my time really testing the api and what it required before going into any code.
+I didnt fully understand the requirement to update the documentation as it had 
+the required information for the changes i had made.
+I Attempted to make the approach functional. I havent much experience actually doing a
+functional take. I attempted to wrap all my logic in functions that had no side effects, and
+data used and not mutated.
+
+Below are some notes i made before i approached this task as a basic plan:
+**Research**
+- Swagger.js **DONE**
+- got.js **DONE**
+- Ramda.js **DONE**
+- OAuth2/OpenID Connection client credentials grant **DONE**
+- Banking Institute Server **DONE**
+
+**Plan / Approach**
+- Write some tests (sudo code) **DONE**
+- Write get access token function **DONE**
+- Write retrieve transactions function **DONE**
+- Write format transactions function **DONE**
+- Cleanup and Comment **DONE**
+- Update documentation **DONE**
+- Answer questions **DONE**
+
+**Effective use of Git**
+- Clone
+- Branch
+- Commit Often
+- Merge
