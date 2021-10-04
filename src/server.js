@@ -8,9 +8,9 @@ const swaggerDocument = require('./swagger.json');
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.get('/users/:userId/transactions', (req, res) => {
-  const accessToken = getAccessToken(req.query.clientId, req.query.clientSecret);
-  res.send(accessToken);
+app.get('/users/:userId/transactions', async (req, res) => {
+  const accessToken = await getAccessToken(req.query.clientId, req.query.clientSecret);
+  res.send(`Access Token is ${accessToken}`);
 });
 
 module.exports = app;
