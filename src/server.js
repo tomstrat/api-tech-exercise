@@ -9,11 +9,15 @@ const swaggerDocument = require('./swagger.json');
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/users/:userId/transactions', async (req, res) => {
-  const accessToken = await getAccessToken(req.query.clientId, req.query.clientSecret);
-  const transactions = await retrieveTransactions(req.params.userId, accessToken);
-  const formattedTransactions = formatTransactions(transactions);
+  try{
+    const accessToken = await getAccessToken(req.query.clientId, req.query.clientSecret);
+    const transactions = await retrieveTransactions(req.params.userId, accessToken);
+    const formattedTransactions = formatTransactions(transactions);
+    res.status(200).json(formattedTransactions);
+  } catch(e){
+    res.status(401).send("Unsuccesful Response - Not authorised - Missing authorization header - Invalid access Token")
+  }
 
-  res.send(`<table>${formattedTransactions}</table>`);
 });
 
 module.exports = app;

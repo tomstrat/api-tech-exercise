@@ -22,6 +22,7 @@ module.exports = {
       throw new Error("Incorrect Credentials");
     }
   },
+
   async retrieveTransactions(userId, accessToken){
     try{
       const response = await got(`https://obmockaspsp.moneyhub.co.uk/api/users/${userId}/transactions`, {
@@ -37,20 +38,21 @@ module.exports = {
       throw new Error("Incorrect UserId");
     }
   },
-  formatTransactions(transactions){
-    const transactionObject = JSON.parse(transactions);
-    let formattedTransactions;
 
-    //Simple way to format these, would perhaps send as JSON object for react.
-    transactionObject.Data.Transactions.forEach(transaction => {
-      formattedTransactions += `<tr>`;
-      formattedTransactions += `<td>${transaction.TransactionId}</td>`;
-      formattedTransactions += `<td>${transaction.AccountId}</td>`;
-      formattedTransactions += `<td>${transaction.Amount.Amount}</td>`;
-      formattedTransactions += `<td>${transaction.BookingDateTime}</td>`;
-      formattedTransactions += `<td>${transaction.TransactionInformation}</td>`;
-      formattedTransactions += `<td>${transaction.Status}</td>`;
-      formattedTransactions += `</tr>`;
+  formatTransactions(transactions){
+    const parsedTransactions = JSON.parse(transactions);
+    let formattedTransactions = {transactions: []};
+
+    //Loop through and add transaction objects for formatting.
+    parsedTransactions.Data.Transactions.forEach(transaction => {
+      let transactionObject = {}
+      transactionObject.id = transaction.TransactionId;
+      transactionObject.accountId = transaction.AccountId;
+      transactionObject.amount =  transaction.Amount.Amount;
+      transactionObject.date = transaction.BookingDateTime;
+      transactionObject.description = transaction.TransactionInformation;
+      transactionObject.status = transaction.Status;
+      formattedTransactions.transactions.push(transactionObject);
     });
 
     return formattedTransactions;
